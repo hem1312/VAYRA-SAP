@@ -1,0 +1,1520 @@
+INFO:     Started server process [13404]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+2026-10-16 12:05:19,238 INFO     [ad1223a47099] vayra.request: request GET /health from 127.0.0.1
+2026-10-16 12:05:19,249 INFO     [ad1223a47099] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:60127 - "GET /health HTTP/1.1" 200 OK
+2026-10-16 12:10:26,114 INFO     [17daec2e856f] vayra.request: request GET /health from 127.0.0.1
+2026-10-16 12:10:26,126 INFO     [17daec2e856f] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:52338 - "GET /health HTTP/1.1" 200 OK
+2026-10-16 12:10:40,813 INFO     [a4a0674c74aa] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:10:40,831 INFO     [a4a0674c74aa] vayra.orchestrator: diagnostic request received (code='M8 147' module='MM — Materials Management')
+2026-10-16 12:10:40,832 INFO     [a4a0674c74aa] vayra.normalize: normalized: code='M8 147' module='MM — Materials Management' transaction='' keywords=8
+2026-10-16 12:10:40,869 INFO     [a4a0674c74aa] vayra.retrieval: retrieval: exact=5 items for code 'M8 147'; starting semantic search
+C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\qdrant_client\qdrant_remote.py:292: UserWarning: Failed to obtain server version. Unable to check client-server compatibility. Set check_compatibility=False to skip version check.
+  show_warning(
+2026-10-16 12:10:50,550 INFO     [a4a0674c74aa] vayra.embeddings: Qdrant server unreachable — using persistent local store at C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.qdrant_local
+2026-10-16 12:10:54,709 ERROR    [a4a0674c74aa] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:10:54,733 INFO     [a4a0674c74aa] vayra.retrieval: retrieval completed: 5 evidence items
+2026-10-16 12:10:54,734 INFO     [a4a0674c74aa] vayra.orchestrator: retrieval finished: 5 evidence items
+2026-10-16 12:10:54,734 INFO     [a4a0674c74aa] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:10:54,734 INFO     [a4a0674c74aa] vayra.orchestrator: LLM request completed
+2026-10-16 12:10:54,734 INFO     [a4a0674c74aa] vayra.orchestrator: validation started
+2026-10-16 12:10:54,734 INFO     [a4a0674c74aa] vayra.orchestrator: validation completed: 2 warnings
+2026-10-16 12:10:54,735 INFO     [a4a0674c74aa] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:57848 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:10:54,740 INFO     [da939d42b57c] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:10:54,748 INFO     [da939d42b57c] vayra.orchestrator: diagnostic request received (code='F5 103' module='FI — Financial Accounting')
+2026-10-16 12:10:54,748 INFO     [da939d42b57c] vayra.normalize: normalized: code='F5 103' module='FI — Financial Accounting' transaction='FB60' keywords=8
+2026-10-16 12:10:54,749 INFO     [da939d42b57c] vayra.retrieval: retrieval: exact=0 items for code 'F5 103'; starting semantic search
+2026-10-16 12:10:58,856 ERROR    [da939d42b57c] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:10:58,876 INFO     [da939d42b57c] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:10:58,876 INFO     [da939d42b57c] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:10:58,877 INFO     [da939d42b57c] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:10:58,877 INFO     [da939d42b57c] vayra.orchestrator: LLM request completed
+2026-10-16 12:10:58,877 INFO     [da939d42b57c] vayra.orchestrator: validation started
+2026-10-16 12:10:58,877 INFO     [da939d42b57c] vayra.orchestrator: validation completed: 4 warnings
+2026-10-16 12:10:58,878 INFO     [da939d42b57c] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50835 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:10:58,905 INFO     [5590f6049890] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:10:58,917 INFO     [5590f6049890] vayra.orchestrator: diagnostic request received (code='GLT2201' module='FI — General Ledger (New GL)')
+2026-10-16 12:10:58,917 INFO     [5590f6049890] vayra.normalize: normalized: code='GLT2201' module='FI — General Ledger (New GL)' transaction='' keywords=8
+2026-10-16 12:10:58,918 INFO     [5590f6049890] vayra.retrieval: retrieval: exact=0 items for code 'GLT2201'; starting semantic search
+2026-10-16 12:11:03,002 ERROR    [5590f6049890] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:03,021 INFO     [5590f6049890] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:03,022 INFO     [5590f6049890] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:03,023 INFO     [5590f6049890] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:03,023 INFO     [5590f6049890] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:03,023 INFO     [5590f6049890] vayra.orchestrator: validation started
+2026-10-16 12:11:03,023 INFO     [5590f6049890] vayra.orchestrator: validation completed: 4 warnings
+2026-10-16 12:11:03,024 INFO     [5590f6049890] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50846 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:03,031 INFO     [605e291ab627] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:03,042 INFO     [605e291ab627] vayra.orchestrator: diagnostic request received (code='VL 108' module='SD — Sales & Distribution')
+2026-10-16 12:11:03,042 INFO     [605e291ab627] vayra.normalize: normalized: code='VL 108' module='SD — Sales & Distribution' transaction='VL01N' keywords=8
+2026-10-16 12:11:03,043 INFO     [605e291ab627] vayra.retrieval: retrieval: exact=0 items for code 'VL 108'; starting semantic search
+2026-10-16 12:11:07,116 ERROR    [605e291ab627] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:07,128 INFO     [605e291ab627] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:07,128 INFO     [605e291ab627] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:07,128 INFO     [605e291ab627] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:07,128 INFO     [605e291ab627] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:07,128 INFO     [605e291ab627] vayra.orchestrator: validation started
+2026-10-16 12:11:07,129 INFO     [605e291ab627] vayra.orchestrator: validation completed: 4 warnings
+2026-10-16 12:11:07,129 INFO     [605e291ab627] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50857 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:07,148 INFO     [f4fa1e8d5255] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:07,156 INFO     [f4fa1e8d5255] vayra.orchestrator: diagnostic request received (code='CO 419' module='CO — Controlling / Product Costing')
+2026-10-16 12:11:07,156 INFO     [f4fa1e8d5255] vayra.normalize: normalized: code='CO 419' module='CO — Controlling / Product Costing' transaction='CO88' keywords=8
+2026-10-16 12:11:07,156 INFO     [f4fa1e8d5255] vayra.retrieval: retrieval: exact=0 items for code 'CO 419'; starting semantic search
+2026-10-16 12:11:11,215 ERROR    [f4fa1e8d5255] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:11,225 INFO     [f4fa1e8d5255] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:11,226 INFO     [f4fa1e8d5255] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:11,226 INFO     [f4fa1e8d5255] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:11,227 INFO     [f4fa1e8d5255] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:11,227 INFO     [f4fa1e8d5255] vayra.orchestrator: validation started
+2026-10-16 12:11:11,227 INFO     [f4fa1e8d5255] vayra.orchestrator: validation completed: 9 warnings
+2026-10-16 12:11:11,227 INFO     [f4fa1e8d5255] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50864 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:11,248 INFO     [2502b7017f69] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:11,255 INFO     [2502b7017f69] vayra.orchestrator: diagnostic request received (code='QA 169' module='QM — Quality Management')
+2026-10-16 12:11:11,255 INFO     [2502b7017f69] vayra.normalize: normalized: code='QA 169' module='QM — Quality Management' transaction='QA11' keywords=8
+2026-10-16 12:11:11,256 INFO     [2502b7017f69] vayra.retrieval: retrieval: exact=0 items for code 'QA 169'; starting semantic search
+2026-10-16 12:11:15,331 ERROR    [2502b7017f69] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:15,358 INFO     [2502b7017f69] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:15,359 INFO     [2502b7017f69] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:15,359 INFO     [2502b7017f69] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:15,360 INFO     [2502b7017f69] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:15,360 INFO     [2502b7017f69] vayra.orchestrator: validation started
+2026-10-16 12:11:15,360 INFO     [2502b7017f69] vayra.orchestrator: validation completed: 5 warnings
+2026-10-16 12:11:15,362 INFO     [2502b7017f69] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50874 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:15,370 INFO     [f177b82e7744] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:15,381 INFO     [f177b82e7744] vayra.orchestrator: diagnostic request received (code='IW 205' module='PM — Plant Maintenance')
+2026-10-16 12:11:15,382 INFO     [f177b82e7744] vayra.normalize: normalized: code='IW 205' module='PM — Plant Maintenance' transaction='IW32' keywords=8
+2026-10-16 12:11:15,382 INFO     [f177b82e7744] vayra.retrieval: retrieval: exact=0 items for code 'IW 205'; starting semantic search
+2026-10-16 12:11:19,476 ERROR    [f177b82e7744] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:19,497 INFO     [f177b82e7744] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:19,498 INFO     [f177b82e7744] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:19,499 INFO     [f177b82e7744] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:19,499 INFO     [f177b82e7744] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:19,499 INFO     [f177b82e7744] vayra.orchestrator: validation started
+2026-10-16 12:11:19,499 INFO     [f177b82e7744] vayra.orchestrator: validation completed: 5 warnings
+2026-10-16 12:11:19,500 INFO     [f177b82e7744] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:52174 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:19,523 INFO     [d23c8b8af673] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:19,535 INFO     [d23c8b8af673] vayra.orchestrator: diagnostic request received (code='DBIF_RSQL_SQL_ERROR' module='BASIS — System Administration')
+2026-10-16 12:11:19,535 INFO     [d23c8b8af673] vayra.normalize: normalized: code='DBIF_RSQL_SQL_ERROR' module='BASIS — System Administration' transaction='' keywords=8
+2026-10-16 12:11:19,536 INFO     [d23c8b8af673] vayra.retrieval: retrieval: exact=0 items for code 'DBIF_RSQL_SQL_ERROR'; starting semantic search
+2026-10-16 12:11:23,653 ERROR    [d23c8b8af673] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:23,670 INFO     [d23c8b8af673] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:23,671 INFO     [d23c8b8af673] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:23,671 INFO     [d23c8b8af673] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:23,671 INFO     [d23c8b8af673] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:23,672 INFO     [d23c8b8af673] vayra.orchestrator: validation started
+2026-10-16 12:11:23,672 INFO     [d23c8b8af673] vayra.orchestrator: validation completed: 4 warnings
+2026-10-16 12:11:23,673 INFO     [d23c8b8af673] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:54499 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:23,702 INFO     [eb4e214354be] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:23,714 INFO     [eb4e214354be] vayra.orchestrator: diagnostic request received (code='CO 041' module='PP — Production Planning')
+2026-10-16 12:11:23,715 INFO     [eb4e214354be] vayra.normalize: normalized: code='CO 041' module='PP — Production Planning' transaction='' keywords=8
+2026-10-16 12:11:23,716 INFO     [eb4e214354be] vayra.retrieval: retrieval: exact=0 items for code 'CO 041'; starting semantic search
+2026-10-16 12:11:27,826 ERROR    [eb4e214354be] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:27,846 INFO     [eb4e214354be] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:27,847 INFO     [eb4e214354be] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:27,847 INFO     [eb4e214354be] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:27,848 INFO     [eb4e214354be] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:27,848 INFO     [eb4e214354be] vayra.orchestrator: validation started
+2026-10-16 12:11:27,848 INFO     [eb4e214354be] vayra.orchestrator: validation completed: 4 warnings
+2026-10-16 12:11:27,849 INFO     [eb4e214354be] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:50927 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:27,877 INFO     [ddaab9feb143] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:27,889 INFO     [ddaab9feb143] vayra.orchestrator: diagnostic request received (code='L3 123' module='WM — Warehouse Management')
+2026-10-16 12:11:27,889 INFO     [ddaab9feb143] vayra.normalize: normalized: code='L3 123' module='WM — Warehouse Management' transaction='LT01' keywords=8
+2026-10-16 12:11:27,890 INFO     [ddaab9feb143] vayra.retrieval: retrieval: exact=0 items for code 'L3 123'; starting semantic search
+2026-10-16 12:11:32,006 ERROR    [ddaab9feb143] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:32,023 INFO     [ddaab9feb143] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:32,024 INFO     [ddaab9feb143] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:32,025 INFO     [ddaab9feb143] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:32,025 INFO     [ddaab9feb143] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:32,025 INFO     [ddaab9feb143] vayra.orchestrator: validation started
+2026-10-16 12:11:32,025 INFO     [ddaab9feb143] vayra.orchestrator: validation completed: 5 warnings
+2026-10-16 12:11:32,026 INFO     [ddaab9feb143] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:63805 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:32,033 INFO     [86c89d133ff0] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:32,047 INFO     [86c89d133ff0] vayra.orchestrator: diagnostic request received (code='PG 019' module='HCM — Time Management')
+2026-10-16 12:11:32,047 INFO     [86c89d133ff0] vayra.normalize: normalized: code='PG 019' module='HCM — Time Management' transaction='' keywords=8
+2026-10-16 12:11:32,049 INFO     [86c89d133ff0] vayra.retrieval: retrieval: exact=0 items for code 'PG 019'; starting semantic search
+2026-10-16 12:11:36,153 ERROR    [86c89d133ff0] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:36,171 INFO     [86c89d133ff0] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:36,172 INFO     [86c89d133ff0] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:36,172 INFO     [86c89d133ff0] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:36,172 INFO     [86c89d133ff0] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:36,172 INFO     [86c89d133ff0] vayra.orchestrator: validation started
+2026-10-16 12:11:36,173 INFO     [86c89d133ff0] vayra.orchestrator: validation completed: 3 warnings
+2026-10-16 12:11:36,174 INFO     [86c89d133ff0] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:57985 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:36,179 INFO     [f3874e59d261] vayra.request: request POST /api/v1/diagnostics from 127.0.0.1
+2026-10-16 12:11:36,190 INFO     [f3874e59d261] vayra.orchestrator: diagnostic request received (code='CJ 031' module='PS — Project System')
+2026-10-16 12:11:36,190 INFO     [f3874e59d261] vayra.normalize: normalized: code='CJ 031' module='PS — Project System' transaction='' keywords=8
+2026-10-16 12:11:36,191 INFO     [f3874e59d261] vayra.retrieval: retrieval: exact=0 items for code 'CJ 031'; starting semantic search
+2026-10-16 12:11:40,258 ERROR    [f3874e59d261] vayra.retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\retriever.py", line 148, in _semantic_matches
+    hits = self._store.search(query, limit=limit, module=module_filter)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:40,276 INFO     [f3874e59d261] vayra.retrieval: retrieval completed: 0 evidence items
+2026-10-16 12:11:40,276 INFO     [f3874e59d261] vayra.orchestrator: retrieval finished: 0 evidence items
+2026-10-16 12:11:40,276 INFO     [f3874e59d261] vayra.orchestrator: LLM request starting (provider=DemoLLMService)
+2026-10-16 12:11:40,277 INFO     [f3874e59d261] vayra.orchestrator: LLM request completed
+2026-10-16 12:11:40,277 INFO     [f3874e59d261] vayra.orchestrator: validation started
+2026-10-16 12:11:40,277 INFO     [f3874e59d261] vayra.orchestrator: validation completed: 3 warnings
+2026-10-16 12:11:40,278 INFO     [f3874e59d261] vayra.request: response POST /api/v1/diagnostics -> 200
+INFO:     127.0.0.1:60850 - "POST /api/v1/diagnostics HTTP/1.1" 200 OK
+2026-10-16 12:11:52,830 INFO     [ba4dad461475] vayra.request: request GET /health from 127.0.0.1
+2026-10-16 12:11:52,839 INFO     [ba4dad461475] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:55137 - "GET /health HTTP/1.1" 200 OK
+2026-10-16 12:11:52,860 INFO     [8c7e31bcc1d7] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-16 12:11:52,874 INFO     [8c7e31bcc1d7] vayra.consultant: consult request: mode=AUTO module='' system='S4D' chars=113
+2026-10-16 12:11:52,992 INFO     [8c7e31bcc1d7] vayra.intent: intent routed: intent=DIAGNOSTIC type=FUNCTIONAL mode=FUNCTIONAL domain=SD(FUNCTIONAL_DOMAIN) problem=BILLING_ERROR conf=0.79 reliable=True
+2026-10-16 12:11:57,069 ERROR    [8c7e31bcc1d7] vayra.consultant_retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\consultant_retriever.py", line 202, in _semantic_matches
+    hits = self._store.search(
+        query,
+    ...<2 lines>...
+        error_code=None,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:11:57,195 INFO     [8c7e31bcc1d7] vayra.consultant_retrieval: consultant retrieval: 4 evidence items
+2026-10-16 12:11:57,196 INFO     [8c7e31bcc1d7] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-16 12:11:57,198 INFO     [8c7e31bcc1d7] vayra.planner: implementation plan generated: id=PLAN-SD-BC6200AE steps=2 risks=5 tests=7 draft=True
+2026-10-16 12:11:57,200 INFO     [8c7e31bcc1d7] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:55138 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-16 12:11:57,206 INFO     [4338a2210c5b] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-16 12:11:57,217 INFO     [4338a2210c5b] vayra.consultant: consult request: mode=AUTO module='' system='' chars=155
+2026-10-16 12:11:57,222 INFO     [4338a2210c5b] vayra.intent: intent routed: intent=IMPLEMENTATION type=FUNCTIONAL mode=IMPLEMENTATION_PLANNER domain=SD(FUNCTIONAL_DOMAIN) problem=IMPLEMENTATION_REQUEST conf=0.79 reliable=True
+2026-10-16 12:12:01,331 ERROR    [4338a2210c5b] vayra.consultant_retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\consultant_retriever.py", line 202, in _semantic_matches
+    hits = self._store.search(
+        query,
+    ...<2 lines>...
+        error_code=None,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:12:01,349 INFO     [4338a2210c5b] vayra.consultant_retrieval: consultant retrieval: 4 evidence items
+2026-10-16 12:12:01,349 INFO     [4338a2210c5b] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-16 12:12:01,351 INFO     [4338a2210c5b] vayra.planner: implementation plan generated: id=PLAN-SD-CEA24CED steps=0 risks=4 tests=7 draft=True
+2026-10-16 12:12:01,353 INFO     [4338a2210c5b] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:55143 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-16 12:12:01,361 INFO     [ea3e5f92a72b] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-16 12:12:01,372 INFO     [ea3e5f92a72b] vayra.consultant: consult request: mode=AUTO module='' system='' chars=155
+2026-10-16 12:12:01,377 INFO     [ea3e5f92a72b] vayra.intent: intent routed: intent=IMPLEMENTATION type=FUNCTIONAL mode=IMPLEMENTATION_PLANNER domain=SD(FUNCTIONAL_DOMAIN) problem=IMPLEMENTATION_REQUEST conf=0.79 reliable=True
+2026-10-16 12:12:05,496 ERROR    [ea3e5f92a72b] vayra.consultant_retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\consultant_retriever.py", line 202, in _semantic_matches
+    hits = self._store.search(
+        query,
+    ...<2 lines>...
+        error_code=None,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:12:05,514 INFO     [ea3e5f92a72b] vayra.consultant_retrieval: consultant retrieval: 4 evidence items
+2026-10-16 12:12:05,515 INFO     [ea3e5f92a72b] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-16 12:12:05,516 INFO     [ea3e5f92a72b] vayra.planner: implementation plan generated: id=PLAN-SD-1BE228E6 steps=0 risks=5 tests=7 draft=False
+2026-10-16 12:12:05,517 INFO     [ea3e5f92a72b] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:55149 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-16 12:12:05,546 INFO     [95e2dbbca232] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-16 12:12:05,555 INFO     [95e2dbbca232] vayra.consultant: consult request: mode=ABAP module='' system='' chars=106
+2026-10-16 12:12:05,559 INFO     [95e2dbbca232] vayra.intent: intent routed: intent=ABAP type=TECHNICAL mode=ABAP domain=ABAP(TECHNICAL_DOMAIN) problem=CODE_REVIEW conf=0.79 reliable=True
+2026-10-16 12:12:09,656 ERROR    [95e2dbbca232] vayra.consultant_retrieval: semantic retrieval failed; continuing without vector results
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_backends\sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\knowledge\retrieval\consultant_retriever.py", line 202, in _semantic_matches
+    hits = self._store.search(
+        query,
+    ...<2 lines>...
+        error_code=None,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 251, in search
+    query=self.embedding.embed_query(query),
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 105, in embed_query
+    return self.embed_documents([text])[0]
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\app\embeddings.py", line 96, in embed_documents
+    response = self._get_client().post(
+        f"{self._base_url}/api/embed",
+        json={"model": self._model_name, "input": texts},
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-10-16 12:12:09,675 INFO     [95e2dbbca232] vayra.consultant_retrieval: consultant retrieval: 4 evidence items
+2026-10-16 12:12:09,678 INFO     [95e2dbbca232] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=TECHNICAL)
+2026-10-16 12:12:09,679 INFO     [95e2dbbca232] vayra.planner: implementation plan generated: id=PLAN-GEN-15B192A3 steps=0 risks=3 tests=7 draft=True
+2026-10-16 12:12:09,681 INFO     [95e2dbbca232] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:55152 - "POST /api/v1/consult HTTP/1.1" 200 OK

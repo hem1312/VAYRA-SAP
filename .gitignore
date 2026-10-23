@@ -1,0 +1,50 @@
+# Python
+backend/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+npm-debug.log*
+*.tsbuildinfo
+
+# Secrets & local env
+.env
+.env.local
+backend/.env
+
+# Local Qdrant persistence (dev fallback mode)
+backend/.qdrant_local/
+
+# Logs & temp
+.freebuff/
+*.log
+desktop/logs/
+desktop/app.lock
+*.log.err
+e2e-result.json
+e2e-consult-result.json
+e2e-run.err
+qwen-pull.log*
+qwen-pull.err
+say-ok.json
+backend-uvicorn.log*
+backend-uvicorn.err
+
+# OS
+Thumbs.db
+.DS_Store
+evaluation-results/
+
+# Phase 3: SAP audit trails (contain request metadata, never secrets — still local-only)
+sap-audit*.jsonl
+
+# Phase 4: execution audit + approvals (same policy: metadata only, no secrets)
+execution-audit*.jsonl
+approvals.jsonl
+
+# Phase 6A: local chat conversation store (single-process, not multi-user durable storage)
+backend/data/conversations.json

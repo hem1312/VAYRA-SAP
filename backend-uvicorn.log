@@ -1,0 +1,184 @@
+2026-10-05 15:09:37,881 INFO     [c2edeeaefdfc] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 15:09:37,888 INFO     [c2edeeaefdfc] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:57783 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 15:10:16,502 INFO     [f7d7ab4b1e15] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 15:10:16,507 INFO     [f7d7ab4b1e15] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:57786 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 15:10:17,068 INFO     [0d9dde0f1faf] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 15:10:17,079 INFO     [0d9dde0f1faf] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:57788 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 15:10:33,425 INFO     [e7a2e5c01047] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 15:10:33,437 INFO     [e7a2e5c01047] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:63943 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 15:10:35,499 INFO     [c6f143d5cc53] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-05 15:10:35,520 INFO     [c6f143d5cc53] vayra.consultant: consult request: mode=AUTO module='' system='S4D' chars=113
+2026-10-05 15:10:35,680 INFO     [c6f143d5cc53] vayra.intent: intent routed: intent=DIAGNOSTIC type=FUNCTIONAL mode=FUNCTIONAL domain=SD(FUNCTIONAL_DOMAIN) problem=BILLING_ERROR conf=0.79 reliable=True
+2026-10-05 15:10:44,875 INFO     [c6f143d5cc53] vayra.embeddings: Qdrant server unreachable — using persistent local store at C:\Users\HEM\Desktop\Git Projects\sap-diagnostic-agent\backend\.qdrant_local
+2026-10-05 15:10:56,711 INFO     [c6f143d5cc53] httpx: HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2026-10-05 15:10:56,824 INFO     [c6f143d5cc53] vayra.consultant_retrieval: consultant retrieval: 9 evidence items
+2026-10-05 15:10:56,827 INFO     [c6f143d5cc53] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-05 15:10:56,830 INFO     [c6f143d5cc53] vayra.planner: implementation plan generated: id=PLAN-SD-18108FA0 steps=2 risks=5 tests=7 draft=True
+2026-10-05 15:10:56,834 INFO     [c6f143d5cc53] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:63945 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-05 15:10:58,890 INFO     [3fd17fdd01c8] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-05 15:10:58,908 INFO     [3fd17fdd01c8] vayra.consultant: consult request: mode=AUTO module='' system='' chars=155
+2026-10-05 15:10:58,914 INFO     [3fd17fdd01c8] vayra.intent: intent routed: intent=IMPLEMENTATION type=FUNCTIONAL mode=IMPLEMENTATION_PLANNER domain=SD(FUNCTIONAL_DOMAIN) problem=IMPLEMENTATION_REQUEST conf=0.79 reliable=True
+2026-10-05 15:10:59,152 INFO     [3fd17fdd01c8] httpx: HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2026-10-05 15:10:59,169 INFO     [3fd17fdd01c8] vayra.consultant_retrieval: consultant retrieval: 10 evidence items
+2026-10-05 15:10:59,172 INFO     [3fd17fdd01c8] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-05 15:10:59,174 INFO     [3fd17fdd01c8] vayra.planner: implementation plan generated: id=PLAN-SD-B5DA204B steps=0 risks=4 tests=7 draft=True
+2026-10-05 15:10:59,178 INFO     [3fd17fdd01c8] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:63985 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-05 15:11:01,252 INFO     [8f121de1e3d3] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-05 15:11:01,270 INFO     [8f121de1e3d3] vayra.consultant: consult request: mode=AUTO module='' system='' chars=155
+2026-10-05 15:11:01,277 INFO     [8f121de1e3d3] vayra.intent: intent routed: intent=IMPLEMENTATION type=FUNCTIONAL mode=IMPLEMENTATION_PLANNER domain=SD(FUNCTIONAL_DOMAIN) problem=IMPLEMENTATION_REQUEST conf=0.79 reliable=True
+2026-10-05 15:11:01,467 INFO     [8f121de1e3d3] httpx: HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2026-10-05 15:11:01,483 INFO     [8f121de1e3d3] vayra.consultant_retrieval: consultant retrieval: 10 evidence items
+2026-10-05 15:11:01,486 INFO     [8f121de1e3d3] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=FUNCTIONAL)
+2026-10-05 15:11:01,489 INFO     [8f121de1e3d3] vayra.planner: implementation plan generated: id=PLAN-SD-5DD63EFA steps=0 risks=5 tests=7 draft=False
+2026-10-05 15:11:01,493 INFO     [8f121de1e3d3] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:63991 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-05 15:11:03,575 INFO     [987e9610fd18] vayra.request: request POST /api/v1/consult from 127.0.0.1
+2026-10-05 15:11:03,589 INFO     [987e9610fd18] vayra.consultant: consult request: mode=ABAP module='' system='' chars=106
+2026-10-05 15:11:03,593 INFO     [987e9610fd18] vayra.intent: intent routed: intent=ABAP type=TECHNICAL mode=ABAP domain=ABAP(TECHNICAL_DOMAIN) problem=CODE_REVIEW conf=0.79 reliable=True
+2026-10-05 15:11:03,814 INFO     [987e9610fd18] httpx: HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2026-10-05 15:11:03,829 INFO     [987e9610fd18] vayra.consultant_retrieval: consultant retrieval: 7 evidence items
+2026-10-05 15:11:03,833 INFO     [987e9610fd18] vayra.consultant: LLM consult starting (provider=DemoLLMService mode=TECHNICAL)
+2026-10-05 15:11:03,835 INFO     [987e9610fd18] vayra.planner: implementation plan generated: id=PLAN-GEN-F70236B0 steps=0 risks=3 tests=7 draft=True
+2026-10-05 15:11:03,839 INFO     [987e9610fd18] vayra.request: response POST /api/v1/consult -> 200
+INFO:     127.0.0.1:63997 - "POST /api/v1/consult HTTP/1.1" 200 OK
+2026-10-05 16:11:18,323 INFO     [74e7d5dad953] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:11:18,331 INFO     [74e7d5dad953] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:61912 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:11:18,333 INFO     [f8810bc7a4db] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:11:18,339 INFO     [ce26bfd57fcb] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:11:18,344 INFO     [f8810bc7a4db] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:59030 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:11:18,345 INFO     [ce26bfd57fcb] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:51095 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:11:33,339 INFO     [131fef3a00cc] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:11:33,356 INFO     [131fef3a00cc] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:64884 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:11:48,340 INFO     [489ef82eab96] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:11:48,353 INFO     [489ef82eab96] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:63750 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:12:03,343 INFO     [2d9778d29a80] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:12:03,356 INFO     [2d9778d29a80] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:56189 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:12:18,329 INFO     [84d34dbb6b73] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:12:18,343 INFO     [84d34dbb6b73] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:53098 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:12:18,346 INFO     [f09049866eb8] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:12:18,357 INFO     [13a8548041e4] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:12:18,366 INFO     [f09049866eb8] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:54920 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:12:18,368 INFO     [13a8548041e4] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:52564 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:12:33,331 INFO     [c01eda94bbe9] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:12:33,344 INFO     [c01eda94bbe9] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:50095 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:12:48,328 INFO     [3f3e083c3243] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:12:48,340 INFO     [3f3e083c3243] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:59152 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:13:03,334 INFO     [ad64686a4d1f] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:13:03,347 INFO     [ad64686a4d1f] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:64282 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:13:18,339 INFO     [d0bafe2995da] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:13:18,353 INFO     [d0bafe2995da] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:51675 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:13:18,356 INFO     [08a8873275f6] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:13:18,369 INFO     [72891019087f] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:13:18,378 INFO     [08a8873275f6] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:55494 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:13:18,380 INFO     [72891019087f] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:65445 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:13:33,343 INFO     [81f72843114b] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:13:33,354 INFO     [81f72843114b] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:58093 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:13:48,337 INFO     [d5a55ed2ccfe] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:13:48,349 INFO     [d5a55ed2ccfe] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:55431 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:14:03,333 INFO     [67ca68a1eb34] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:14:03,346 INFO     [67ca68a1eb34] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:53309 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:14:18,339 INFO     [518f7ed9ca77] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:14:18,354 INFO     [518f7ed9ca77] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:65527 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:14:18,358 INFO     [b3779b0ffd38] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:14:18,372 INFO     [d8d3d3668234] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:14:18,384 INFO     [b3779b0ffd38] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:63506 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:14:18,387 INFO     [d8d3d3668234] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:58447 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:14:33,328 INFO     [5ffff286d207] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:14:33,340 INFO     [5ffff286d207] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:64061 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:14:48,328 INFO     [5e1ce8bf4541] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:14:48,340 INFO     [5e1ce8bf4541] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:54676 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:03,340 INFO     [6362902212fc] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:03,353 INFO     [6362902212fc] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:54453 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:18,326 INFO     [9104e9cb8786] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:18,340 INFO     [9104e9cb8786] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:52482 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:18,343 INFO     [745bf98eac12] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:15:18,353 INFO     [9e4cfc7db086] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:15:18,365 INFO     [745bf98eac12] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:50733 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:15:18,368 INFO     [9e4cfc7db086] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:53656 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:15:20,502 INFO     [8ed906049ba2] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:20,521 INFO     [2412fc0176ca] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:15:20,523 INFO     [8ed906049ba2] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:53656 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:20,535 INFO     [fce205ea9ef3] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:15:20,546 INFO     [2412fc0176ca] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:50733 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:15:20,549 INFO     [252ba587aa5d] vayra.request: request GET /api/v1/sap/status from 127.0.0.1
+2026-10-05 16:15:20,551 INFO     [fce205ea9ef3] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:52482 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:15:20,554 INFO     [252ba587aa5d] vayra.request: response GET /api/v1/sap/status -> 200
+INFO:     127.0.0.1:52814 - "GET /api/v1/sap/status HTTP/1.1" 200 OK
+2026-10-05 16:15:29,716 INFO     [39d017b55da0] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:29,725 INFO     [39d017b55da0] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:53107 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:29,727 INFO     [b906363e97f5] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:15:29,735 INFO     [b1fe6f33464e] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 16:15:29,737 INFO     [b906363e97f5] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:58534 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:15:29,739 INFO     [b1fe6f33464e] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:58380 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 16:15:44,716 INFO     [fda22e9dc59a] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:44,727 INFO     [fda22e9dc59a] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:55529 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:15:49,719 INFO     [78eaf2fd4df3] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 16:15:49,723 INFO     [78eaf2fd4df3] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:55529 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 16:15:52,936 INFO     [a7098f313b19] vayra.request: request OPTIONS /api/v1/execution/plans from 127.0.0.1
+2026-10-05 16:15:52,938 INFO     [a7098f313b19] vayra.request: response OPTIONS /api/v1/execution/plans -> 200
+INFO:     127.0.0.1:55529 - "OPTIONS /api/v1/execution/plans HTTP/1.1" 200 OK
+2026-10-05 16:15:52,947 INFO     [e7c85b1bc617] vayra.request: request POST /api/v1/execution/plans from 127.0.0.1
+2026-10-05 16:15:52,959 INFO     [e7c85b1bc617] vayra.request: response POST /api/v1/execution/plans -> 200
+INFO:     127.0.0.1:55529 - "POST /api/v1/execution/plans HTTP/1.1" 200 OK
+2026-10-05 16:15:59,729 INFO     [705440e32798] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:15:59,739 INFO     [705440e32798] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:65185 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:16:09,722 INFO     [0f2dc4645577] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 16:16:09,725 INFO     [0f2dc4645577] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:57411 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 16:16:14,719 INFO     [0c7e64de146c] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:16:14,730 INFO     [0c7e64de146c] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:57411 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:16:29,728 INFO     [d1fa30620e41] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:16:29,741 INFO     [7929dad36661] vayra.request: request GET /api/v1/provider-status from 127.0.0.1
+2026-10-05 16:16:29,743 INFO     [329241de75a8] vayra.request: request GET /api/v1/execution/status from 127.0.0.1
+2026-10-05 16:16:29,754 INFO     [d1fa30620e41] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:58897 - "GET /health HTTP/1.1" 200 OK
+2026-10-05 16:16:29,757 INFO     [7929dad36661] vayra.request: response GET /api/v1/provider-status -> 200
+INFO:     127.0.0.1:58288 - "GET /api/v1/provider-status HTTP/1.1" 200 OK
+2026-10-05 16:16:29,760 INFO     [329241de75a8] vayra.request: response GET /api/v1/execution/status -> 200
+INFO:     127.0.0.1:59738 - "GET /api/v1/execution/status HTTP/1.1" 200 OK
+2026-10-05 16:16:44,729 INFO     [50c28e30664d] vayra.request: request GET /health from 127.0.0.1
+2026-10-05 16:16:44,741 INFO     [50c28e30664d] vayra.request: response GET /health -> 200
+INFO:     127.0.0.1:54000 - "GET /health HTTP/1.1" 200 OK

@@ -1,0 +1,54 @@
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.100:3000
+
+ ✓ Starting...
+ ✓ Ready in 3.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 26.4s (648 modules)
+ ○ Compiling /consult ...
+ ✓ Compiled /consult in 2.4s (641 modules)
+ GET /consult 200 in 3572ms
+ GET / 200 in 125ms
+ GET /consult 200 in 66ms
+ ○ Compiling /graph ...
+ ✓ Compiled /graph in 1872ms (650 modules)
+ GET /graph 200 in 2011ms
+ GET /consult 200 in 78ms
+ ○ Compiling /settings ...
+ ✓ Compiled /settings in 1629ms (657 modules)
+ GET /settings 200 in 2116ms
+ GET /consult 200 in 155ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1529ms (662 modules)
+ GET /api/v1/settings 404 in 1791ms
+ GET / 200 in 1051ms
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /consult 200 in 92ms
+ ○ Compiling /history ...
+ ✓ Compiled /history in 2.3s (666 modules)
+ GET /history 200 in 2780ms
+ GET /graph 200 in 119ms
+ GET /history?case=demo-VL+354 200 in 72ms
+ GET /graph 200 in 80ms
+ GET /settings 200 in 112ms
+ GET / 200 in 60ms
+ GET /consult 200 in 96ms
+ GET / 200 in 64ms
+ GET /consult 200 in 72ms
+ ✓ Compiled in 16.6s (666 modules)
+ ✓ Compiled in 15.2s (666 modules)
+ ✓ Compiled in 8.5s (666 modules)
+ ✓ Compiled in 10.5s (666 modules)
+ GET /consult 200 in 1347ms
+ GET /consult 200 in 265ms
+ GET /consult 200 in 275ms
+ ✓ Compiled in 9.4s (666 modules)
+ GET /consult 200 in 1413ms
+ GET / 200 in 185ms
+ GET /consult 200 in 52ms
+ GET /history 200 in 118ms
+ GET /graph 200 in 61ms
+ GET /settings 200 in 99ms
+ GET / 200 in 55ms
